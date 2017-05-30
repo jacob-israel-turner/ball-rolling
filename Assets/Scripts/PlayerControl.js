@@ -5,10 +5,12 @@ var rb : Rigidbody;
 var speed : int;
 var count : int;
 var countText : Text;
+var winText : Text;
 
 function Start () {
 	rb = GetComponent.<Rigidbody>();
 	count = 0;
+	winText.text = "";
 	updateCount();
 }
 
@@ -29,4 +31,7 @@ function OnTriggerEnter (other : Collider) {
 
 function updateCount() {
 	countText.text = "Count: " + count.ToString();
+	if (count >= 13) {
+		winText.text = "You Win!";
+	}
 }
