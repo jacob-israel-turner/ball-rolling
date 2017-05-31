@@ -6,6 +6,7 @@ var speed : int;
 var count : int;
 var countText : Text;
 var winText : Text;
+var numberOfItems : int = 12;
 
 function Start () {
 	rb = GetComponent.<Rigidbody>();
@@ -31,7 +32,13 @@ function OnTriggerEnter (other : Collider) {
 
 function updateCount() {
 	countText.text = "Count: " + count.ToString();
-	if (count >= 13) {
-		winText.text = "You Win!";
+	if (count >= numberOfItems) {
+		handleWin();
 	}
+}
+
+function handleWin() {
+	Debug.Log('WINNING');
+	var score = Mathf.Floor((numberOfItems / Time.time) * 1000) + (600 * numberOfItems);
+	winText.text = "You Win! Score: " + score;
 }
